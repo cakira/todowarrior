@@ -2,6 +2,10 @@
 _Synchronize [Toodledo](https://www.toodledo.com/) and
 [Taskwarrior](https://taskwarrior.org/)_
 
+[![Pylint](https://github.com/cakira/todowarrior/actions/workflows/lint.yml/badge.svg)](https://github.com/cakira/todowarrior/actions/workflows/lint.yml)
+[![Unit tests](https://github.com/cakira/todowarrior/actions/workflows/unittest.yml/badge.svg)](https://github.com/cakira/todowarrior/actions/workflows/unittest.yml)
+[![Security](https://github.com/cakira/todowarrior/actions/workflows/security.yml/badge.svg)](https://github.com/cakira/todowarrior/actions/workflows/security.yml)
+
 ## Why?
 I've been using [Toodledo](https://www.toodledo.com/) for some years
 (decades?) as my task list/to-do list manager, and I like it. I use it on
