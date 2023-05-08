@@ -63,11 +63,10 @@ def get_access_token_from_login():
 
 def main(argv):
     access_token = get_access_token_from_login()
-    EPOCH = 1672542000
 
     print('\nGetting data')
     url = ('http://api.toodledo.com/3/tasks/get.php' +
-           f'?access_token={access_token}&after={EPOCH}')
+           f'?access_token={access_token}')
 
     response = requests.post(url)
     print(response)
