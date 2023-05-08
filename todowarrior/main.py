@@ -17,7 +17,10 @@ import urllib.parse
 from urllib.parse import urlparse, parse_qs
 
 import requests
+import xdg
 
+PROGRAM_NAME = 'Todowarrior'
+CREDENTIALS_FILENAME = 'credentials.json'
 REQUESTS_TIMEOUT_SECONDS = 30
 
 
@@ -77,7 +80,7 @@ def get_access_token_from_login():
 
 
 def main(_argv):
-    access_token = get_access_token_from_login()
+    access_token = get_access_token()
 
     print('\nGetting data')
     url = ('http://api.toodledo.com/3/tasks/get.php' +
@@ -92,6 +95,22 @@ def main(_argv):
 
     for task in tasks[1:]:
         print(task['title'])
+
+
+def get_access_token():
+    credential_dir = xdg.xdg_config_home() / PROGRAM_NAME.lower()
+    credential_filename = credential_dir / CREDENTIALS_FILENAME
+    if credential_filename.is_file():
+        with open(credential_filename, encoding='utf-8') as credential_file:
+            access_token = json.load(credential_file)['access_token']
+    else:
+        access_token = get_access_token_from_login()
+        credentials = {'access_token': access_token}
+        credential_filename.parent.mkdir(exist_ok=True, parents=True)
+        with open(credential_filename, 'w',
+                  encoding='utf-8') as credential_file:
+            json.dump(credentials, credential_file)
+    return access_token
 
 
 if __name__ == "__main__":
