@@ -56,9 +56,6 @@ def get_access_token_from_login():
     }
 
     response = requests.post(url, data=data, headers=headers)
-    print(response)
-    print(response.text)
-
     access_token = json.loads(response.text)['access_token']
     # TODO: use refresh token
     return access_token
